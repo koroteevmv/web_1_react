@@ -6,7 +6,7 @@ import AddTodo from "./components/addTodo";
 
 class App extends React.Component{
   state = {
-    todos:[
+    todos:[ыыыыы
       {
         id: 1,
         title: 'Вынести мусор',
