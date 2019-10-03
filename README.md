@@ -1,68 +1,51 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!----- Conversion time: 0.378 seconds.
 
-## Available Scripts
 
-In the project directory, you can run:
+Using this Markdown file:
 
-### `npm start`
+1. Cut and paste this output into your source file.
+2. See the notes and action items below regarding this conversion run.
+3. Check the rendered output (headings, lists, code blocks, tables) for proper
+   formatting and use a linkchecker before you publish this page.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Conversion notes:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+* Docs to Markdown version 1.0β17
+* Thu Oct 03 2019 03:46:12 GMT-0700 (PDT)
+* Source doc: https://docs.google.com/open?id=1wZmdpN8L0sKdfaa1WRl_mkWF-ijSXRIR2nuEWsDBf3Q
+----->
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Создание приложения на React
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Цель работы
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Освоить основные приемы работы с библиотекой React.js
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Задания для выполнения
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Необходимо создать простое приложение “список дел” с использованием библиотеки React.js.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Приложение должно демонстрировать список дел (несколько дел можно добавить в коде в виде состояния приложения). У каждого дела отображается название, флаг, позволяющий отметить дело как сделанное, и кнопка, позволяющая его удалить.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Сделанные дела отображаются особым образом (например, перечеркнутым текстом). Дело можно вернуть в состояние незавершенного.
 
-## Learn More
+Выше списка дел отображается поле ввода и кнопка “Добавить”, позволяющие ввести название и добавить к списку новое дело.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Заголовок, форма ввода, список дел и каждое дело должно реализовываться как отдельный компонент React. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+### Дополнительные задания
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+1. Добавьте к вашему приложению таблицу стилей с использованием библиотеки Twitter Bootstrap.
+2. Добавьте возможность указать срок выполнения каждого дела. Более срочные дела должны отображаться сверху списка.
+3. Добавьте поле ввода, позволяющее отфильтровать дела по названию.
+4. Добавьте к приложению служебные экраны, например, полная/мобильная версия, страница “о приложении”, “контакты” и так далее. Добавьте в общий компонент возможность переходить между окнами (аналоги активностей в android).
+5. Добавьте возможность сохранения пользовательского списка дел.
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<!-- Docs to Markdown version 1.0β17 -->
