@@ -5,9 +5,28 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 22px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.form {
+  margin: 10px 0px;
+}
+
+.form input {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.label_checkbox {
+  cursor: pointer;
 }

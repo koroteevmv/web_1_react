@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class AddTodo extends Component {
     render() {
         return (
-            <form style={{display: 'flex'}}>
+            <form className="form" style={{display: 'flex'}}>
                 <input type='text'
                        name='title'
                        placeholder='Add todo'

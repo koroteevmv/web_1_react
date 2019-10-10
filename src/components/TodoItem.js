@@ -20,9 +20,12 @@ class TodoItem extends React.Component{
         return (
             <div style={this.getStyle()}>
                 <p align='left'>
-                    <input type="checkbox"
-                           onChange={this.props.markComplete.bind(this, id)}/> {' '}
-                    { title }
+                    <label className="label_checkbox">
+                        <input type="checkbox"
+                               onChange={this.props.markComplete.bind(this, id)}
+                               checked={this.props.todo.completed ? "checked" : ""}/> {' '}
+                        { title }
+                    </label>
                     <button onClick={this.props.delTodo.bind(this, id)}
                             style={btnStyle}>X</button>
                 </p>
