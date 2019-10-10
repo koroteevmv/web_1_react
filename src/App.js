@@ -15,15 +15,26 @@ class App extends React.Component{
       {
         id: 2,
         title: 'Встреча с друзьями',
-        completed: true,
+        completed: false,
       },
       {
         id: 3,
         title: 'Совещание на работе',
         completed: false,
       },
+      {
+        id: 4,
+        title: 'Купить хлеб',
+        completed: false,
+      },
+      {
+        id: 5,
+        title: 'Забрать посылку с почты',
+        completed: false,
+      },
     ]
   };
+
   // Toggle complete
   markComplete =(id) => {
     this.setState({ todos: this.state.todos.map(todo =>{
@@ -38,12 +49,22 @@ class App extends React.Component{
     this.setState({todos: [...this.state.todos.filter(todo => todo.id != id)]});
   }
 
+  addTodo = (title) => {
+    const len = this.state.todos.length;
+    const newTodo = {
+      id:len+1,
+      title: title,
+      completed: false,
+    };
+    this.setState({todos: [...this.state.todos, newTodo]});
+  };
+
   render() {
     return (
         <div className="App">
           <div className="container">
             <Header/>
-            <AddTodo/>
+            <AddTodo addTodo={this.addTodo}/>
             <Todos todos={this.state.todos}
                    markComplete={this.markComplete}
                    delTodo={this.delTodo}
