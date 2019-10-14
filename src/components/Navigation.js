@@ -8,12 +8,14 @@ class Navigation extends Component {
 
     render() {
         return (
-            <nav>
-                <ul>
-                    <li><Link to='/'>TODOS</Link></li>
-                    <li><Link to='/calculator'>КАЛЬКУЛЯТОР БАЛЛОВ</Link></li>
-                </ul>
-            </nav>
+            <div className="navigation">
+                <nav className="navigation__nav">
+                    <ul className="navigation__list">
+                        <li className="navigation__item"><Link to='/'>TODOS</Link></li>
+                        <li className="navigation__item"><Link to='/calculator'>КАЛЬКУЛЯТОР БАЛЛОВ</Link></li>
+                    </ul>
+                </nav>
+            </div>
         )
     }
 }

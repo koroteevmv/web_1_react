@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Todos from './Todos'
 import AddTodo from "./AddTodo";
 import Filter from "./Filter";
