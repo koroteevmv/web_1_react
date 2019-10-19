@@ -13,16 +13,19 @@ class App_Todos extends React.Component {
           id: 1,
           title: 'Не пропустить солнечное затмение',
           completed: false,
+		  DateOfTodo: '2026-08-12',
         },
         {
           id: 2,
           title: 'Увидеть закат в самолете',
           completed: true,
+		  DateOfTodo: '2018-12-13',
         },
         {
           id: 3,
           title: 'Встретить новый год в другой стране',
           completed: false,
+		  DateOfTodo: '2019-12-31',
         },
       ]
     };
@@ -33,13 +36,14 @@ class App_Todos extends React.Component {
   }
 
   //Добавление дела
-  addTodo = (title) => {
+  addTodo = (title, date) => {
 	this.state = { todos: [...this.state.todos, { 
 	id: this.state.todos.length+1, 
 	title: title,  
-	completed: false,}]
-}
- this.setState(this.state);
+	completed: false,
+	DateOfTodo: date,}]
+	}	
+	this.setState(this.state);
   };
   // Toggle complete
   markComplete = (id) => {

@@ -20,12 +20,19 @@ constructor(props) {
 
                         />
                     </div>
-					
+					<label className="col-md-2">Сделать до:</label>
+                    <div className="col-md-2">
+                        <input type='date'
+                            name='DateOfTodo'
+                            ref={this.DateOfTodo}
+                            className='form-control'
+                        />
+                    </div>
                     <div className="col-md-1">
                         <button type="reset"
                             value='Submit'
                             className='btn btn-dark'
-                            onClick={() => this.props.addTodo(this.input.current.value)}
+                            onClick={() => this.props.addTodo(this.input.current.value, this.DateOfTodo.current.value)}
                         >Добавить</button>
                     </div>
                 </div>

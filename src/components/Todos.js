@@ -7,9 +7,19 @@ constructor(props) {
         super(props);
         this.state = {todos: props.todos};
     }
-    
+    getSorted() {
+        return [...this.state.todos].sort(function (a, b) {
+            return new Date(a.DateOfTodo) - new Date(b.DateOfTodo);
+        });
+    }
+	componentDidUpdate(prevProps) {
+        if (this.props.todos !== prevProps.todos) {
+            this.setState({todos: this.props.todos});
+        }
+    }
+
     render() {
-        return this.props.todos.map(
+        return this.getSorted().map(
             (todo) => (
                 <TodoItem key={todo.id}
                           todo={todo}

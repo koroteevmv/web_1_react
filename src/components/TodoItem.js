@@ -19,7 +19,7 @@ class TodoItem extends React.Component{
     }
 
     render() {
-const { id, title } = this.props.todo;
+const { id, title, DateOfTodo } = this.props.todo;
 return (
             <div style={this.getStyle()}>
                 <p align='left'>
@@ -27,7 +27,8 @@ return (
                         onChange={this.props.markComplete.bind(this, id)}
 						checked={this.props.todo.completed ? "checked" : ""}
                     />
-                    {' ' + title + ' '}
+                    {' ' + title} 
+					<span className="font-italic">{' (к '+DateOfTodo +")"}</span>
                     <button onClick={this.props.delTodo.bind(this, id)}
                              className="btn btn-default btn-xs float-right">
 							 <FontAwesomeIcon icon={faTimes} />

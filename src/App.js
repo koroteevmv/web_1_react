@@ -6,7 +6,7 @@ import Header from "./components/layout/header";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import About from "./components/pages/About";
 import App_Todos from './App_Todos';
-import Video from './components/pages/Video'
+import Video from './components/pages/Video';
 
 
 class App extends React.Component{
@@ -32,6 +32,7 @@ render() {
                                 <App_Todos />
 
                             </Route>
+							
                         </Switch>
                     </Router >
                 </div>
