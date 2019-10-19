@@ -5,24 +5,37 @@ import Header from "./components/layout/header";
 import AddTodo from "./components/addTodo";
 
 class App extends React.Component{
-  state = {
+  constructor(props) {
+    super(props);
+    this.state = {
     todos:[
       {
         id: 1,
-        title: 'Вынести мусор',
+        title: 'Не пропустить солнечное затмение',
         completed: false,
       },
       {
         id: 2,
-        title: 'Встреча с друзьями',
+        title: 'Увидеть закат в самолете',
         completed: true,
       },
       {
         id: 3,
-        title: 'Совещание на работе',
+        title: 'Встретить новый год в другой стране',
         completed: false,
       },
     ]
+  };
+  this.addTodo = this.addTodo.bind(this);
+    }
+  //Добавление дела
+  addTodo = (title, date) => {
+	this.state = { todos: [...this.state.todos, { 
+	id: this.state.todos.length, 
+	title: title,  
+	completed: false,
+	DateOfTodo: date,}] }
+ this.setState(this.state);
   };
   // Toggle complete
   markComplete =(id) => {
@@ -43,7 +56,7 @@ class App extends React.Component{
         <div className="App">
           <div className="container">
             <Header/>
-            <AddTodo/>
+            <AddTodo addTodo={this.addTodo}/>
             <Todos todos={this.state.todos}
                    markComplete={this.markComplete}
                    delTodo={this.delTodo}
