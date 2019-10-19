@@ -1,38 +1,35 @@
-import React, {Component} from 'react';
+﻿import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 class AddTodo extends Component {
 constructor(props) {
         super(props);
+        this.input = React.createRef();
+        this.DateOfTodo = React.createRef();
     }
-	state = {
-        title: ''
-    };
-    onChange = (e) => this.setState({
-        [e.target.name]: e.target.value
-    });
-
-	onSubmit = (e) => {
-		e.preventDefault();
-		this.props.addTodo(this.state.title);
-		this.setState({title: ''});
-	};
-
-    render() {
+	render() {
         return (
-            <form className="form" onSubmit={this.onSubmit} style={{display: 'flex'}}>
-                <input type='text'
-                       name='title'
-                       placeholder='Add todo'
-                       style={{flex: '10'}}
-					   onChange={this.onChange}
-                />
-                <input type='submit'
-                       value='Submit'
-                       className='btm'
-                       style={{flex: '1'}}
-                />
-            </form>
+             <form>
+                <div className="form-row mb-2">
+                    <div className="col-md-6">
+                        <input type='text'
+                            name='title'
+                            placeholder='Добавьте дело здесь'
+                            ref={this.input}					
+                            className='form-control'
+
+                        />
+                    </div>
+					
+                    <div className="col-md-1">
+                        <button type="reset"
+                            value='Submit'
+                            className='btn btn-dark'
+                            onClick={() => this.props.addTodo(this.input.current.value)}
+                        >Добавить</button>
+                    </div>
+                </div>
+            </form >
         );
     }
 }
