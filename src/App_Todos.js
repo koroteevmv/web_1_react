@@ -60,24 +60,35 @@ class App_Todos extends React.Component {
   filterTodos(event) {
 	this.setState({ todos: this.state.todos.filter(todo => todo.title.match(new RegExp(this.filterText.current.value, 'i')) != null) });
   }
+  resetName(event){
+      this.setState({
+           F : ''
+      });
+  }
   render() {
     return (
       <div className="App_Todos">
           <AddTodo addTodo={this.addTodo} />
 		  <div className="row mb-2">
-		  <label className="col-md-2">Фильтр по названию:</label>
-            <form>
-              <div className="col">
-                <input type='text'
-                  name='filterText'
-                  placeholder='Введите здесь'
-                  ref={this.filterText}
-                  className='form-control'
-                  onInput={this.filterTodos}
-                />
-              </div>
-            </form>
-          </div>
+			<div className="col-md-2">
+				<label>Фильтр по названию:</label>
+			</div>
+			<form>
+				<div className="col">
+					<input type='text'
+					name='filterText'
+					placeholder='Введите здесь'
+					ref={this.filterText}
+					className='form-control'
+					onInput={this.filterTodos}
+					value= {this.state.F}
+					/>
+		
+			
+						<button onClick={this.resetName} className='btn btn-dark'>Сбросить фильтр</button>
+				</div>	
+			</form>
+		  </div>
           <div className="row">
             <div className="col">
               <Todos todos={this.state.todos}
