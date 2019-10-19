@@ -26,8 +26,10 @@ class App_Todos extends React.Component {
         },
       ]
     };
+	this.filterTodos = this.filterTodos.bind(this);
     this.displayedTodos = this.state;
     this.addTodo = this.addTodo.bind(this);
+	this.filterText = React.createRef();
   }
 
   //Добавление дела
@@ -51,11 +53,27 @@ class App_Todos extends React.Component {
   delTodo = (id) => {
     this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]});
   }
-  
+  filterTodos(event) {
+	this.setState({ todos: this.state.todos.filter(todo => todo.title.match(new RegExp(this.filterText.current.value, 'i')) != null) });
+  }
   render() {
     return (
       <div className="App_Todos">
           <AddTodo addTodo={this.addTodo} />
+		  <div className="row mb-2">
+		  <label className="col-md-2">Фильтр по названию:</label>
+            <form>
+              <div className="col">
+                <input type='text'
+                  name='filterText'
+                  placeholder='Введите здесь'
+                  ref={this.filterText}
+                  className='form-control'
+                  onInput={this.filterTodos}
+                />
+              </div>
+            </form>
+          </div>
           <div className="row">
             <div className="col">
               <Todos todos={this.state.todos}
