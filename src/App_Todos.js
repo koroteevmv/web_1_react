@@ -83,19 +83,17 @@ class App_Todos extends React.Component {
 					onInput={this.filterTodos}
 					value= {this.state.F}
 					/>
-		
-			
 						<button onClick={this.resetName} className='btn btn-dark'>Сбросить фильтр</button>
 				</div>	
 			</form>
 		  </div>
           <div className="row">
             <div className="col">
-              <Todos todos={this.state.todos}
-                length={this.state.todos.length}
-                markComplete={this.markComplete}
-                delTodo={this.delTodo}
-              />
+				{this.state.todos.length ? (
+					<Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
+				) : (
+					<span className='text-muted'> Вы удалили все свои дела. Возможно, пришло время добавить новые :) </span>
+				)}
             </div>
           </div>
         </div>
