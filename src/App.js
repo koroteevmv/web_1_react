@@ -6,23 +6,7 @@ import AddTodo from "./components/addTodo";
 
 class App extends React.Component {
   state = {
-    todos: [
-      {
-        id: 1,
-        title: "Вынести мусор",
-        completed: false
-      },
-      {
-        id: 2,
-        title: "Встреча с друзьями",
-        completed: false
-      },
-      {
-        id: 3,
-        title: "Совещание на работе",
-        completed: false
-      }
-    ]
+    todos: []
   };
   // Toggle complete
   markComplete = id => {
