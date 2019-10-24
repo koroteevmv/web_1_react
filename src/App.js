@@ -1,55 +1,60 @@
-import React from 'react';
-import './App.css';
-import Todos from './components/Todos'
+import React from "react";
+import "./App.css";
+import Todos from "./components/Todos";
 import Header from "./components/layout/header";
 import AddTodo from "./components/addTodo";
 
-class App extends React.Component{
+class App extends React.Component {
   state = {
-    todos:[ыыыыы
+    todos: [
       {
         id: 1,
-        title: 'Вынести мусор',
-        completed: false,
+        title: "Вынести мусор",
+        completed: false
       },
       {
         id: 2,
-        title: 'Встреча с друзьями',
-        completed: true,
+        title: "Встреча с друзьями",
+        completed: false
       },
       {
         id: 3,
-        title: 'Совещание на работе',
-        completed: false,
-      },
+        title: "Совещание на работе",
+        completed: false
+      }
     ]
   };
   // Toggle complete
-  markComplete =(id) => {
-    this.setState({ todos: this.state.todos.map(todo =>{
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-      }
-      return todo;
-      }) });
+  markComplete = id => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    });
   };
 
-  delTodo = (id) => {
-    this.setState({todos: [...this.state.todos.filter(todo => todo.id != id)]});
-  }
+  delTodo = id => {
+    this.setState({
+      todos: [...this.state.todos.filter(todo => todo.id != id)]
+    });
+  };
 
   render() {
     return (
-        <div className="App">
-          <div className="container">
-            <Header/>
-            <AddTodo/>
-            <Todos todos={this.state.todos}
-                   markComplete={this.markComplete}
-                   delTodo={this.delTodo}
-            />
-          </div>
+      <div className="App">
+        <div className="container">
+          <Header />
+          <AddTodo />
+          <Todos
+            todos={this.state.todos}
+            markComplete={this.markComplete}
+            delTodo={this.delTodo}
+          />
         </div>
+      </div>
     );
   }
 }
