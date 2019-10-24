@@ -7,7 +7,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #8a1c90;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -32,12 +32,12 @@
 .btn {
   display: block;
   border: none;
-  background: #555555;
-  color: #ffffff;
+  background: #1c1455;
+  color: #f1a5ff;
   padding: 7px 20px;
   cursor: pointer;
 }
 
 .btn:hover {
-  background: #666666;
+  background: rgba(102, 32, 49, 0.48);
 }
