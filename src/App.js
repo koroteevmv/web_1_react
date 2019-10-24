@@ -6,7 +6,26 @@ import AddTodo from "./components/addTodo";
 
 class App extends React.Component {
   state = {
-    todos: []
+    todos: [
+      {
+        id: 1,
+        title: "Вынести мусор",
+        duration: 1,
+        completed: false
+      },
+      {
+        id: 2,
+        duration: 6,
+        title: "Встреча с друзьями",
+        completed: false
+      },
+      {
+        id: 3,
+        duration: 5,
+        title: "Совещание на работе",
+        completed: false
+      }
+    ]
   };
   // Toggle complete
   markComplete = id => {
@@ -19,10 +38,19 @@ class App extends React.Component {
       })
     });
   };
+  addTodo = title => {
+    const len = this.state.todos.length;
+    const newTodo = {
+      id: len + 1,
+      title: title,
+      completed: false
+    };
+    this.setState({ todos: [...this.state.todos, newTodo] });
+  };
 
   delTodo = id => {
     this.setState({
-      todos: [...this.state.todos.filter(todo => todo.id != id)]
+      todos: [...this.state.todos.filter(todo => todo.id !== id)]
     });
   };
 
