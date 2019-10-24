@@ -1,8 +1,8 @@
-﻿// JavaScript source code
-import React from 'react';
+﻿import React from 'react';
 import './App.css';
 import Todos from './components/Todos'
 import AddTodo from "./components/addTodo";
+import Filter from "./Filter";
 
 class App_Todos extends React.Component {
   constructor(props) {
@@ -29,11 +29,21 @@ class App_Todos extends React.Component {
         },
       ]
     };
-	this.filterTodos = this.filterTodos.bind(this);
     this.displayedTodos = this.state;
     this.addTodo = this.addTodo.bind(this);
 	this.filterText = React.createRef();
+	this.filterTodos = this.filterTodos.bind(this);
   }
+
+  componentWillMount() {
+	localStorage.getItem('ListOfTodos') && this.setState({
+		todos: JSON.parse(localStorage.getItem('ListOfTodos'))
+	})
+  }
+
+componentDidMount() {
+	this.state = { todos: [...this.state.todos]}
+}
 
   //Добавление дела
   addTodo = (title, date) => {
@@ -57,42 +67,37 @@ class App_Todos extends React.Component {
   delTodo = (id) => {
     this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]});
   }
-  filterTodos(event) {
-	this.setState({ todos: this.state.todos.filter(todo => todo.title.match(new RegExp(this.filterText.current.value, 'i')) != null) });
+  Flag = false;
+  filterTodos = (filterText) => {
+    if(filterText != ''){
+      this.todosCopy = this.state.todos;
+      this.Flag = true;
+      this.setState({todos: this.state.todos.filter(todo => todo.title.match(new RegExp(filterText, 'i')) != null)},
+          () => console.log(this.state.todos));}
+		  		   		   		  
+  };
+  
+  Reset = (filterText) => {
+    if(this.Flag === true){
+      this.setState({todos: this.todosCopy},
+          () => console.log(this.state.todos))};
+  };
+
+  componentWillUpdate(nextProps, nextState) {
+	localStorage.setItem('ListOfTodos', JSON.stringify(nextState.todos));
   }
-  resetName(event){
-      this.setState({
-           F : ''
-      });
-  }
+
   render() {
     return (
       <div className="App_Todos">
           <AddTodo addTodo={this.addTodo} />
-		  <div className="row mb-2">
-			<div className="col-md-2">
-				<label>Фильтр по названию:</label>
-			</div>
-			<form>
-				<div className="col">
-					<input type='text'
-					name='filterText'
-					placeholder='Введите здесь'
-					ref={this.filterText}
-					className='form-control'
-					onInput={this.filterTodos}
-					value= {this.state.F}
-					/>
-						<button onClick={this.resetName} className='btn btn-dark'>Сбросить фильтр</button>
-				</div>	
-			</form>
-		  </div>
+		  <Filter filterTodos = {this.filterTodos} Reset = {this.Reset}/>
           <div className="row">
             <div className="col">
 				{this.state.todos.length ? (
 					<Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
-				) : (
-					<span className='text-muted'> Вы удалили все свои дела. Возможно, пришло время добавить новые :) </span>
+				) : ( 
+					<span className='text-muted'> Тут два варианта: либо Вы удалили все свои дела, либо нет совпадений по фильтру :) </span>
 				)}
             </div>
           </div>
