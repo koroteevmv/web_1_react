@@ -3,6 +3,7 @@ import "./App.css";
 import Todos from "./components/Todos";
 import Header from "./components/layout/header";
 import AddTodo from "./components/addTodo";
+import "./bootstrap.min.css";
 
 class App extends React.Component {
   state = {
@@ -65,6 +66,15 @@ class App extends React.Component {
             markComplete={this.markComplete}
             delTodo={this.delTodo}
           />
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="popover"
+            title="Сообщение"
+            data-content="Ура, Bootstrap 4 работает"
+          >
+            Поднеси ко мне курсор
+          </button>
         </div>
       </div>
     );
