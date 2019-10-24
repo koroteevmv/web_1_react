@@ -5,9 +5,10 @@ class TodoItem extends React.Component{
     getStyle = () => {
         return{
             background: '#f4f4f4',
-            padding: '5px',
+            padding: '25px',
+            marginTop: '10px',
             borderBottom: '1px #ccc dotted',
-            textDecoration: this.props.todo.completed ? 'line-through' : 'none'
+            textDecoration: this.props.todo.completed ? 'line-through' : 'none',
         }
     };
 
@@ -16,29 +17,23 @@ class TodoItem extends React.Component{
     }
 
     render() {
-        const {id, title} = this.props.todo;
+        const {id, title, do_until} = this.props.todo;
         return (
             <div style={this.getStyle()}>
                 <p align='left'>
-                    <input type="checkbox"
-                           onChange={this.props.markComplete.bind(this, id)}/>{' '}{title}
-                    <button onClick={this.props.delTodo.bind(this, id)}
-                            style={btnStyle}>X</button>
+                    <input class="col-md-1" type="checkbox"
+                           onChange={this.props.markComplete.bind(this, id)}/>{' '}{title}{' '}{'(Завершить до: '}{do_until}{')'}
+                    <input class="col-md-1" type='image'
+                           src='https://image.flaticon.com/icons/svg/126/126468.svg'
+                           value=''
+                           onClick={this.props.delTodo.bind(this, id)}
+                           style={{flex: '2', color: 'white', float:'right', padding: '5px', height: '35px', widht: '35px'}}
+                    />
                 </p>
             </div>
         );
     }
 }
-
-const btnStyle = {
-    background: '#ff0000',
-    color: '#fff',
-    border: 'none',
-    padding: '5px 9px',
-    borderRadius:'100%',
-    cursor: 'pointer',
-    float:'right',
-};
 
 TodoItem.propTypes = {
     todo: PropTypes.object.isRequired
