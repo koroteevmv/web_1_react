@@ -60,21 +60,20 @@ class App extends React.Component {
       <div className="App">
         <div className="container">
           <Header />
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="popover"
+            title="Перейти на контакты"
+          >
+            Контакты
+          </button>
           <AddTodo />
           <Todos
             todos={this.state.todos}
             markComplete={this.markComplete}
             delTodo={this.delTodo}
           />
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="popover"
-            title="Сообщение"
-            data-content="Ура, Bootstrap 4 работает"
-          >
-            Поднеси ко мне курсор
-          </button>
         </div>
       </div>
     );
