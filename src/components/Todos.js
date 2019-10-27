@@ -10,6 +10,7 @@ class Todos extends React.Component{
                           todo={todo}
                           markComplete={this.props.markComplete}
                           delTodo={this.props.delTodo}
+                          addTodo={this.props.addTodo}
                 />
         ));
     }
