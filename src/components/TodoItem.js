@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import Moment from 'moment';
 
 class TodoItem extends React.Component{
     getStyle = () => {
@@ -16,17 +17,20 @@ class TodoItem extends React.Component{
     }
 
     render() {
-        const {id, title} = this.props.todo;
+          const {id, title, date} = this.props.todo;
         return (
-            <div style={this.getStyle()}>
-                <p align='left'>
-                    <input type="checkbox"
+                <tr style={this.getStyle()}>
+                    <th scope="row">
+                        <input type="checkbox"
                            onChange={this.props.markComplete.bind(this, id)}/> {' '}
-                    { title }
-                    <button onClick={this.props.delTodo.bind(this, id)}
+                    </th>
+                    <td> { title } </td>
+                    <td> { Moment(date, 'DD-MM-YYYY').format('DD-MM-YYYY') } </td>
+                    <td>
+                        <button onClick={this.props.delTodo.bind(this, id)}
                             style={btnStyle}>X</button>
-                </p>
-            </div>
+                    </td>
+                </tr>
         );
     }
 }

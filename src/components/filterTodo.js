@@ -1,21 +1,11 @@
 import React, {Component} from 'react';
-import { format } from 'date-fns'
-
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-class AddTodo extends Component {
+class FilterTodo extends Component {
     
     state = {
-        title: " ",
-        date: new Date(),
+        title: "",
       };
-
-    handleChange = date => {
-        this.setState({
-          date: date
-        });
-    };
 
     handleInputChange = (event) => {
         this.setState({
@@ -25,9 +15,8 @@ class AddTodo extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.addTodo(this.state.title, format(new Date(this.state.date), "dd.MM.yyyy"));
-        this.setState({title: ''})
-    }
+        this.props.filterTodo(this.state.title);
+    };
     
     render() {
         return (
@@ -37,21 +26,17 @@ class AddTodo extends Component {
                        value={this.state.title}
                        onChange={this.handleInputChange}
                        placeholder='Название'
-                       style={{flex: '10'}}
-                />
-                <DatePicker
-                    selected={this.state.date}
-                    onChange={this.handleChange}
-                    dateFormat="dd-MM-yyyy"
+                       style={{flex: '8'}}
                 />
                 <input type='submit'
-                       value='Добавить'
+                       value='Фильтровать по названию'
                        className='btm'
-                       style={{flex: '3'}}
+                       style={{flex: '5'}}
+                       class="btn btn-primary"
                 />
             </form>
         );
     }
 }
 
-export default AddTodo;
+export default FilterTodo;

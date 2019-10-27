@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 
 class Todos extends React.Component{
     render() {
-        return this.props.todos.map(
+        return this.props.todos.filter(todo => todo.title.includes(this.props.filter_title)).map(
             (todo) => (
-                <TodoItem key={todo.id}
-                          todo={todo}
-                          markComplete={this.props.markComplete}
-                          delTodo={this.props.delTodo}
+                <TodoItem key = {todo.id}
+                          todo = {todo}
+                          markComplete = {this.props.markComplete}
+                          delTodo = {this.props.delTodo}
                 />
         ));
     }
