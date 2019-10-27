@@ -41,3 +41,52 @@
 .btn:hover {
   background: #666666;
 }
+
+/* ПОДВАЛ */
+.footer {
+  position: fixed; /* Фиксированное положение */
+  left: 0;
+  bottom: 0; /* Левый нижний угол */
+  background: #66cdaa; /* Цвет фона подвал (футера) */
+  padding: 10px; /* Поля внутри блока */
+  color: #000; /* Цвет текста футера */
+  width: 100%; /* Ширина слоя */
+}
+.Header {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Header a {
+  font-size: 16px;
+  padding: 20px 6px;
+  margin-right: 60px;
+  color: #000;
+}
+
+.Header a:hover {
+  background: #66cdaa;
+}
+.menu-ul {
+  padding: 22px 0;
+  list-style-type: none;
+  margin-top: 20px;
+  float: right;
+  margin-right: 20px;
+}
+
+.menu-ul li {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+li {
+  list-style: none;
+  display: flex;
+}
+.logo {
+  height: 89px;
+  margin-top: 20px;
+}

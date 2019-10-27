@@ -1,62 +1,25 @@
 import React from "react";
 import "./App.css";
-import Todos from "./components/Todos";
+import Footer from "./components/layout/footer";
 import Header from "./components/layout/header";
-import AddTodo from "./components/addTodo";
+import About from "./About";
+import List from "./List";
+import Home from "./Home";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-class App extends React.Component {
-  state = {
-    todos: [
-      {
-        id: 1,
-        title: "Вынести мусор",
-        completed: false
-      },
-      {
-        id: 2,
-        title: "Встреча с друзьями",
-        completed: false
-      },
-      {
-        id: 3,
-        title: "Совещание на работе",
-        completed: false
-      }
-    ]
-  };
-  // Toggle complete
-  markComplete = id => {
-    this.setState({
-      todos: this.state.todos.map(todo => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      })
-    });
-  };
-
-  delTodo = id => {
-    this.setState({
-      todos: [...this.state.todos.filter(todo => todo.id != id)]
-    });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <div className="container">
-          <Header />
-          <AddTodo />
-          <Todos
-            todos={this.state.todos}
-            markComplete={this.markComplete}
-            delTodo={this.delTodo}
-          />
-        </div>
+function App() {
+  return (
+    <Router>
+      <div>
+        {" "}
+        <Header />
+        <Route exact path="/" component={Home} />
+        <Route path="/List" component={List} />
+        <Route path="/About" component={About} />
       </div>
-    );
-  }
+      <Footer />
+    </Router>
+  );
 }
 
 export default App;

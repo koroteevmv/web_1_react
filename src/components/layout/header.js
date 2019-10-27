@@ -1,18 +1,24 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "./img/list.png";
 
-function Header() {
+export default class Header extends React.Component {
+  render() {
     return (
-        <header style={headerStyle}>
-            <h1>TodoList</h1>
-        </header>
-    )
+      <div className="Header">
+        <img className="logo" src={Logo} alt="Логотип" />
+        <ul className="menu-ul">
+          <li>
+            <Link to="/">ГЛАВНАЯ</Link>
+          </li>
+          <li>
+            <Link to="/List">СПИСОК ДЕЛ</Link>
+          </li>
+          <li>
+            <Link to="/About">О ПРИЛОЖЕНИИ</Link>
+          </li>
+        </ul>
+      </div>
+    );
+  }
 }
-
-const headerStyle = {
-    background: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    padding: '10px',
-}
-
-export default Header;
