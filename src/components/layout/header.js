@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 function Header() {
     return (
@@ -13,6 +14,5 @@ const headerStyle = {
     color: '#fff',
     textAlign: 'center',
     padding: '10px',
-}
-
+};
 export default Header;
