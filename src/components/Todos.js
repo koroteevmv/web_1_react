@@ -11,7 +11,7 @@ class Todos extends React.Component{
                           markComplete={this.props.markComplete}
                           delTodo={this.props.delTodo}
                 />
-        ));
+            ));
     }
 }
 
