@@ -35,9 +35,24 @@ class App extends React.Component {
     });
   };
 
+  addTodo = title => {
+    if (title === "") {
+      alert("Введите дело");
+    } else {
+      const len = this.state.todos.length;
+      const newTodo = {
+        id: len + 1,
+        title: title,
+        completed: false
+      };
+
+      this.setState({ todos: [...this.state.todos, newTodo] });
+    }
+  };
+
   delTodo = id => {
     this.setState({
-      todos: [...this.state.todos.filter(todo => todo.id != id)]
+      todos: [...this.state.todos.filter(todo => todo.id !== id)]
     });
   };
 
@@ -45,7 +60,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="container">
-          <AddTodo />
+          <AddTodo addTodo={this.addTodo} />
           <Todos
             todos={this.state.todos}
             markComplete={this.markComplete}

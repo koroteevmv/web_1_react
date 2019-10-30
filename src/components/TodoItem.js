@@ -36,6 +36,7 @@ class TodoItem extends React.Component {
             </button>{" "}
           </p>
         </div>
+
         <div>
           <label htmlFor="datum">Добавить дату </label>
           <input type="date" id="datum" className="form-control" />
@@ -58,11 +59,11 @@ const btnStyle = {
 };*/
 
 const btnStyle = {
-  background: "#ff0000",
-  color: "#fff",
+  background: "#f4f4f4",
+  color: "red",
   border: "none",
-  padding: "5px 9px",
-  borderRadius: "50%",
+  padding: "4px 5px",
+  borderRadius: "30%",
   cursor: "pointer",
   float: "right"
 };
