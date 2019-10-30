@@ -2,12 +2,13 @@ import React, { Component } from "react";
 
 class AddTodo extends Component {
   state = {
-    title: ""
+    title: "",
+    duration: ""
   };
   onSubmit = e => {
     e.preventDefault();
-    this.props.addTodo(this.state.title);
-    this.setState({ title: "" });
+    this.props.addTodo(this.state.title, ", Срок: " + this.state.duration);
+    this.setState({ title: "", duration: "" });
   };
 
   onChange = e =>
@@ -17,23 +18,34 @@ class AddTodo extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit} style={{ display: "flex" }}>
-        <input
-          type="text"
-          name="title"
-          placeholder="Добавить дело"
-          style={{ flex: "10" }}
-          value={this.state.title}
-          onChange={this.onChange}
-        />
-
-        <input
-          type="submit"
-          value="Submit"
-          className="btm"
-          style={{ flex: "1" }}
-        />
-      </form>
+      <div>
+        <form onSubmit={this.onSubmit} style={{ display: "flex" }}>
+          <input
+            type="text"
+            name="title"
+            placeholder="Добавить дело"
+            style={{ flex: "1" }}
+            value={this.state.title}
+            onChange={this.onChange}
+          />
+          <input
+            type="number"
+            name="duration"
+            placeholder="Срок"
+            style={{ flex: "1" }}
+            value={this.state.duration}
+            onChange={this.onChange}
+          />
+        </form>
+        <form onSubmit={this.onSubmit} style={{ display: "flex" }}>
+          <input
+            type="submit"
+            value="Добавить"
+            class="btn btn-primary"
+            style={{ flex: "1" }}
+          />
+        </form>
+      </div>
     );
   }
 }

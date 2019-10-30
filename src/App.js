@@ -4,6 +4,10 @@ import Todos from "./components/Todos";
 import Header from "./components/layout/header";
 import AddTodo from "./components/addTodo";
 import "./bootstrap.min.css";
+import Filtr from "./components/Filtr";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import About from "./components/About";
+import Contacts from "./components/Contacts";
 
 class App extends React.Component {
   state = {
@@ -39,14 +43,29 @@ class App extends React.Component {
       })
     });
   };
-  addTodo = title => {
-    const len = this.state.todos.length;
-    const newTodo = {
-      id: len + 1,
-      title: title,
-      completed: false
-    };
-    this.setState({ todos: [...this.state.todos, newTodo] });
+  addTodo = (title, duration) => {
+    if ((title === "") | (duration === "")) {
+      alert("Нужно ввести дело и срок");
+    } else {
+      const len = this.state.todos.length;
+      const newTodo = {
+        id: len + 1,
+        title: title,
+        duration: duration,
+        completed: false
+      };
+      this.setState(
+        {
+          todos: [...this.state.todos, newTodo].sort((a, b) =>
+            a.duration > b.duration ? 1 : -1
+          )
+        },
+        () => {
+          this.todosCopy = this.state.todos;
+          localStorage.setItem("List", JSON.stringify(this.state.todos));
+        }
+      );
+    }
   };
 
   delTodo = id => {
@@ -55,27 +74,67 @@ class App extends React.Component {
     });
   };
 
+  componentWillMount() {
+    if (localStorage.getItem("Dela")) {
+      this.setState({
+        todos: JSON.parse(localStorage.getItem("Dela"))
+      });
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem("Dela", JSON.stringify(nextState.todos));
+  }
+
+  delTodo = id => {
+    this.setState({
+      todos: [...this.state.todos.filter(todo => todo.id != id)]
+    });
+  };
+
+  Fil = false;
+  FiltrTodo = title => {
+    if (title != "") {
+      this.todosCopy = this.state.todos;
+      this.Fil = true;
+      this.setState(
+        { todos: this.state.todos.filter(todo => todo.title === title) },
+        () => console.log(this.state.todos)
+      );
+    }
+  };
+
+  delFiltr = () => {
+    if (this.Fil === true) {
+      this.setState({ todos: this.todosCopy });
+    }
+  };
   render() {
     return (
-      <div className="App">
-        <div className="container">
-          <Header />
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="popover"
-            title="Перейти на контакты"
-          >
-            Контакты
-          </button>
-          <AddTodo addTodo={this.addTodo} />
-          <Todos
-            todos={this.state.todos}
-            markComplete={this.markComplete}
-            delTodo={this.delTodo}
-          />
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <React.Fragment>
+                  <AddTodo addTodo={this.addTodo} />
+                  <Filtr FiltrTodo={this.FiltrTodo} delFiltr={this.delFiltr} />
+                  <Todos
+                    todos={this.state.todos}
+                    markComplete={this.markComplete}
+                    delTodo={this.delTodo}
+                  />
+                </React.Fragment>
+              )}
+            />
+            <Route path="/about" component={About} />
+            <Route path="/contacts" component={Contacts} />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }

@@ -1,18 +1,44 @@
-import React from 'react';
-
+import React from "react";
+import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 function Header() {
-    return (
-        <header style={headerStyle}>
-            <h1>TodoList</h1>
-        </header>
-    )
-}
+  return (
+    <div>
+      <header style={headerStyle}>
+        <h1>Список дел</h1>
+      </header>
 
-const headerStyle = {
-    background: '#333',
-    color: '#fff',
-    textAlign: 'center',
-    padding: '10px',
+      <header style={headerStyle1}>
+        <Link style={LinkStyle} to="/">
+          [Главная]
+        </Link>
+        <Link style={LinkStyle} to="/About">
+          {" "}
+          [О приложении]
+        </Link>
+        <Link style={LinkStyle} to="/contacts">
+          {" "}
+          [Контакты]
+        </Link>
+      </header>
+      <br />
+    </div>
+  );
 }
+const LinkStyle = {
+  color: "white"
+};
+const headerStyle = {
+  background: "black",
+  color: "white",
+  textAlign: "center",
+  padding: "10px"
+};
+const headerStyle1 = {
+  background: "midnightblue",
+  color: "white",
+  textAlign: "center",
+  padding: "10px"
+};
 
 export default Header;
