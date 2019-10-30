@@ -26,7 +26,7 @@ class App extends React.Component {
   };
   addTodo = title => {
     if (title === "") {
-      alert("Введите дело");
+      alert("Для добавления дела, сначала впишите его.");
     } else {
       const len = this.state.todos.length;
       const newTodo = {
@@ -34,10 +34,6 @@ class App extends React.Component {
         title: title,
         completed: false
       };
-      /* this.setState({ todos: [...this.state.todos, newTodo] }, () => {
-        this.todosCopy = this.state.todos;
-        localStorage.setItem("plans", JSON.stringify(this.state.todos));
-      }); */
       this.setState({ todos: [...this.state.todos, newTodo] });
     }
   };
@@ -61,6 +57,9 @@ class App extends React.Component {
 
   Fil = false;
   FiltrTodo = title => {
+    if (title === "") {
+      alert("Введите в поле фильтрации имя");
+    }
     if (title !== "") {
       this.todosCopy = this.state.todos;
       this.Fil = true;

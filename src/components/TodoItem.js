@@ -36,7 +36,6 @@ class TodoItem extends React.Component {
             </button>{" "}
           </p>
         </div>
-
         <div>
           <label htmlFor="datum">Добавить дату </label>
           <input type="date" id="datum" className="form-control" />
