@@ -11,26 +11,7 @@ import Contacts from "./components/Contacts";
 
 class App extends React.Component {
   state = {
-    todos: [
-      {
-        id: 1,
-        title: "Вынести мусор",
-        duration: 1,
-        completed: false
-      },
-      {
-        id: 2,
-        duration: 5,
-        title: "Встреча с друзьями",
-        completed: false
-      },
-      {
-        id: 3,
-        duration: 6,
-        title: "Совещание на работе",
-        completed: false
-      }
-    ]
+    todos: []
   };
   // Toggle complete
   markComplete = id => {
