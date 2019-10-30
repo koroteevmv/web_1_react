@@ -17,9 +17,17 @@ class Filtr extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+
+  getStyle = () => {
+    return {
+      padding: "5px",
+      marginLeft: "5%",
+      marginRight: "5%"
+    };
+  };
   render() {
     return (
-      <div>
+      <div style={this.getStyle()}>
         {" "}
         <div>
           {" "}
@@ -59,7 +67,7 @@ class Filtr extends React.Component {
                 color: "white",
                 fontSize: "100%"
               }}
-              onClick={this.onClick}
+              onClick={this.onClick2}
             />
           </form>
         </div>

@@ -34,7 +34,10 @@ class App extends React.Component {
         title: title,
         completed: false
       };
-
+      /* this.setState({ todos: [...this.state.todos, newTodo] }, () => {
+        this.todosCopy = this.state.todos;
+        localStorage.setItem("plans", JSON.stringify(this.state.todos));
+      }); */
       this.setState({ todos: [...this.state.todos, newTodo] });
     }
   };

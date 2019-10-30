@@ -14,10 +14,16 @@ class AddTodo extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-
+  getStyle = () => {
+    return {
+      padding: "5px",
+      marginLeft: "5%",
+      marginRight: "5%"
+    };
+  };
   render() {
     return (
-      <div>
+      <div style={this.getStyle()}>
         {" "}
         <div>
           {" "}
