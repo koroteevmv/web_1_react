@@ -32,10 +32,10 @@ class TodoItem extends React.Component{
 }
 
 const btnStyle = {
-    background: '#ff0000',
-    color: '#fff',
+    background: '#000000',
+    color: '#ff4546',
     border: 'none',
-    padding: '5px 9px',
+    padding: '2px 9px',
     borderRadius:'50%',
     cursor: 'pointer',
     float:'right'
