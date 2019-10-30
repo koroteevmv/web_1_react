@@ -140,9 +140,6 @@
     display: block;
     margin: 0 0 5px;
   }
-  .nav ul:hover .current {
-    background: url(images/icon-check.png) no-repeat 10px 7px;
-  }
 
   /* адаптивное меню справа */
   .nav.right ul {

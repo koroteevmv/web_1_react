@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Todos from "./components/Todos";
 import AddTodo from "./components/addTodo";
+import Filtr from "./components/Filtr";
 
 class App extends React.Component {
   state = {
@@ -23,18 +24,6 @@ class App extends React.Component {
       }
     ]
   };
-  // Toggle complete
-  markComplete = id => {
-    this.setState({
-      todos: this.state.todos.map(todo => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      })
-    });
-  };
-
   addTodo = title => {
     if (title === "") {
       alert("Введите дело");
@@ -55,12 +44,53 @@ class App extends React.Component {
       todos: [...this.state.todos.filter(todo => todo.id !== id)]
     });
   };
+  // Toggle complete
+  markComplete = id => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    });
+  };
+
+  Fil = false;
+  FiltrTodo = title => {
+    if (title !== "") {
+      this.todosCopy = this.state.todos;
+      this.Fil = true;
+      this.setState(
+        { todos: this.state.todos.filter(todo => todo.title === title) },
+        () => console.log(this.state.todos)
+      );
+    }
+  };
+  delFiltr = () => {
+    if (this.Fil === true) {
+      this.setState({ todos: this.todosCopy });
+    }
+  };
+
+  UNSAFE_componentWillMount() {
+    if (localStorage.getItem("plans")) {
+      this.setState({
+        todos: JSON.parse(localStorage.getItem("plans"))
+      });
+    }
+  }
+
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem("plans", JSON.stringify(nextState.todos));
+  }
 
   render() {
     return (
       <div className="App">
         <div className="container">
           <AddTodo addTodo={this.addTodo} />
+          <Filtr FiltrTodo={this.FiltrTodo} delFiltr={this.delFiltr} />
           <Todos
             todos={this.state.todos}
             markComplete={this.markComplete}
