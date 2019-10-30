@@ -21,7 +21,7 @@ class AddTodo extends Component {
         <input
           type="text"
           name="title"
-          placeholder="Add todo"
+          placeholder="Добавить дело"
           style={{ flex: "10" }}
           value={this.state.title}
           onChange={this.onChange}

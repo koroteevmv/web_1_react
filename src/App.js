@@ -68,7 +68,7 @@ class App extends React.Component {
           >
             Контакты
           </button>
-          <AddTodo />
+          <AddTodo addTodo={this.addTodo} />
           <Todos
             todos={this.state.todos}
             markComplete={this.markComplete}
