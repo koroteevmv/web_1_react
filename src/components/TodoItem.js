@@ -13,16 +13,16 @@ class TodoItem extends React.Component{
 
     markComplete = (e) => {
         console.log(this.props)
-    }
+    };
 
     render() {
-        const {id, title} = this.props.todo;
+        const {id, title, deadline} = this.props.todo;
         return (
             <div style={this.getStyle()}>
                 <p align='left'>
                     <input type="checkbox"
                            onChange={this.props.markComplete.bind(this, id)}/> {' '}
-                    { title }
+                    { title } {deadline == undefined ? 0 : deadline.toString()}
                     <button onClick={this.props.delTodo.bind(this, id)}
                             style={btnStyle}>X</button>
                 </p>
