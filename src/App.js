@@ -20,13 +20,13 @@ class App extends React.Component {
       },
       {
         id: 2,
-        duration: 6,
+        duration: 5,
         title: "Встреча с друзьями",
         completed: false
       },
       {
         id: 3,
-        duration: 5,
+        duration: 6,
         title: "Совещание на работе",
         completed: false
       }
