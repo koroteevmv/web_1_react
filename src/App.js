@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Todos from "./components/Todos";
 import Header from "./components/layout/header";
+import "./bootstrap.min.css";
 import AddTodo from "./components/addTodo";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import About from "./components/About";

@@ -23,13 +23,13 @@ class AddTodo extends Component {
           <input
             type="text"
             name="title"
-            placeholder="Добавить дело"
-            style={{ flex: "1" }}
+            placeholder="Введите дело"
+            style={{ flex: "6", color: "green" }}
             value={this.state.title}
             onChange={this.onChange}
           />
           <input
-            type="number"
+            type="date"
             name="duration"
             placeholder="Срок"
             style={{ flex: "1" }}
