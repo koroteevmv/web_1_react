@@ -8,7 +8,9 @@ class About extends Component {
                 <p>This application is intended for the introduction of cases. Developer Romashka corp.
 
                 </p>
-            </React.Fragment>
+                <div className="spinner-border text-danger" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div></React.Fragment>
         );
     }
 }
