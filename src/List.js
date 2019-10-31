@@ -43,6 +43,7 @@ class App extends React.Component {
       todos: [...this.state.todos.filter(todo => todo.id !== id)]
     });
   };
+
   // Toggle complete
   markComplete = id => {
     this.setState({

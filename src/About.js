@@ -1,4 +1,7 @@
 import React from "react";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 export default class About extends React.Component {
   getStyle = () => {
@@ -35,6 +38,16 @@ export default class About extends React.Component {
             список!
           </p>
           <p>Желаем удачи!</p>
+        </div>
+
+        <div>
+          <DropdownButton
+            as={ButtonGroup}
+            title="Нажни на меня"
+            id="bg-nested-dropdown"
+          >
+            <Dropdown.Item eventKey="1">Приветик</Dropdown.Item>
+          </DropdownButton>
         </div>
       </div>
     );
