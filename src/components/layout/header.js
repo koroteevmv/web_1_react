@@ -24,16 +24,16 @@ const LinkStyle = {
   color: "white"
 };
 const headerStyle = {
-  background: "black",
+  background: "darkgray",
   color: "white",
   textAlign: "center",
-  padding: "10px"
+  padding: "1px"
 };
 const headerStyle1 = {
-  background: "midnightblue",
+  background: "gray",
   color: "white",
   textAlign: "center",
-  padding: "10px"
+  padding: "6px"
 };
 
 export default Header;

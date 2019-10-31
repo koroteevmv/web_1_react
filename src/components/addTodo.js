@@ -41,8 +41,8 @@ class AddTodo extends Component {
           <input
             type="submit"
             value="Добавить"
-            class="btn btn-primary"
-            style={{ flex: "1" }}
+            class="btn btn-secondary"
+            style={{ flex: "1", color: "" }}
           />
         </form>
       </div>
