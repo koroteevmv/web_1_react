@@ -9,11 +9,12 @@ function Header() {
 
       <header style={headerStyle1}>
         <Link style={LinkStyle} to="/">
-          [Главная]
+          'Дела'
         </Link>
+
         <Link style={LinkStyle} to="/About">
           {" "}
-          [О приложении]
+          'Справка'
         </Link>
       </header>
       <br />
