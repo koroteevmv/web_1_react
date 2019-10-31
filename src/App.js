@@ -5,6 +5,7 @@ import Header from "./components/layout/header";
 import AddTodo from "./components/addTodo";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import About from "./components/About";
+import "./bootstrap.css";
 class App extends React.Component {
   state = {
     todos: [
@@ -39,7 +40,7 @@ class App extends React.Component {
 
   addTodo = (title, duration) => {
     if ((title === "") | (duration === "")) {
-      alert("Нужно ввести дело и срок");
+      alert("Вводи ");
     } else {
       const len = this.state.todos.length;
       const newTodo = {

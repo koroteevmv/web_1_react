@@ -4,16 +4,18 @@ function Header() {
   return (
     <div>
       <header style={headerStyle}>
-        <h1>Список дел</h1>
+        <h1 class="card-header" style={{ background: "black" }}>
+          Список дел
+        </h1>
       </header>
 
-      <header style={headerStyle1}>
+      <header style={{ background: "black" }}>
         <Link style={LinkStyle} to="/">
-          [Главная]
+          Главная
         </Link>
         <Link style={LinkStyle} to="/About">
           {" "}
-          [О приложении]
+          О приложении
         </Link>
       </header>
       <br />

@@ -7,7 +7,10 @@ class AddTodo extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    this.props.addTodo(this.state.title, ", Срок: " + this.state.duration);
+    this.props.addTodo(
+      this.state.title,
+      ", Срок выполнения: " + this.state.duration
+    );
     this.setState({ title: "", duration: "" });
   };
 
@@ -24,15 +27,15 @@ class AddTodo extends Component {
             type="text"
             name="title"
             placeholder="Добавить дело"
-            style={{ flex: "1" }}
+            style={{ flex: "2", color: "blue", fontSize: "24px" }}
             value={this.state.title}
             onChange={this.onChange}
           />
           <input
-            type="number"
+            type="date"
             name="duration"
-            placeholder="Срок"
-            style={{ flex: "1" }}
+            placeholder="Срок выполнения"
+            style={{ flex: "1", color: "blue", fontSize: "24px" }}
             value={this.state.duration}
             onChange={this.onChange}
           />
@@ -41,7 +44,7 @@ class AddTodo extends Component {
           <input
             type="submit"
             value="Добавить"
-            class="btn btn-primary"
+            class="btn btn-success"
             style={{ flex: "1" }}
           />
         </form>
