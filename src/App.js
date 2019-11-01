@@ -1,57 +1,123 @@
 import React from 'react';
 import './App.css';
 import Todos from './components/Todos'
-import Header from "./components/layout/header";
-import AddTodo from "./components/addTodo";
-
-class App extends React.Component{
+import Header from "./components/layout/Header";
+import AddTodo from "./components/AddTodo";
+import About from "./components/About";
+import Filtr from "./components/Filtr";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+class App extends React.Component {
   state = {
-    todos:[
+    todos: [
       {
         id: 1,
-        title: 'Вынести мусор',
+        title: 'Купить кросы',
         completed: false,
       },
       {
         id: 2,
-        title: 'Встреча с друзьями',
+        title: 'Выпить вина',
         completed: true,
       },
       {
         id: 3,
-        title: 'Совещание на работе',
+        title: 'Полететь в космос',
+        completed: false,
+
+      },
+    ]
+  };
+  markComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    });
+  };
+  addTodo = (title) => {
+      const len = this.state.todos.length;
+      const newTodo = {
+        id: len + 1,
+        title: title,
+        completed: false
+      };
+      this.setState({todos: [...this.state.todos, newTodo]},
+          () => {
+            this.todosCopy = this.state.todos;
+            localStorage.setItem('td', JSON.stringify(this.state.todos));
+          })
+  };
+
+  componentWillMount() {
+    if (localStorage.getItem('td')) {
+      this.setState({
+        todos: JSON.parse(localStorage.getItem('td'))
+      })
+    }
+  }
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('td', JSON.stringify(nextState.todos));
+  }
+  delTodo = (id) => {
+    this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]});
+  }
+  state = {
+    todos:[
+      {
+        id: 1,
+        title: 'Купить кросы',
+        completed: false,
+      },
+      {
+        id: 2,
+        title: 'Выпить вина',
+        completed: false,
+      },
+      {
+        id: 3,
+        title: 'Полететь в космос',
         completed: false,
       },
     ]
   };
-  // Toggle complete
-  markComplete =(id) => {
-    this.setState({ todos: this.state.todos.map(todo =>{
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-      }
-      return todo;
-      }) });
+  TF = false;
+  FiltrTodo = (title) => {
+    if(title !== ''){
+      this.todosCopy = this.state.todos;
+      this.TF = true;
+      this.setState({todos: this.state.todos.filter(todo => todo.title === title)},
+          () => console.log(this.state.todos));}
   };
-
-  delTodo = (id) => {
-    this.setState({todos: [...this.state.todos.filter(todo => todo.id != id)]});
-  }
-
+  cancelF = () => {
+    if(this.TF === true){
+      this.setState({todos:this.todosCopy})
+    }
+  };
   render() {
     return (
-        <div className="App">
-          <div className="container">
-            <Header/>
-            <AddTodo/>
-            <Todos todos={this.state.todos}
-                   markComplete={this.markComplete}
-                   delTodo={this.delTodo}
-            />
+        <Router>
+          <div className="App">
+            <div className="container">
+              <Header/>
+              <Route exact path='/' render={props => (
+                  <React.Fragment>
+                    <AddTodo addTodo={this.addTodo}/>
+
+                    <Todos todos={this.state.todos}
+                           markComplete={this.markComplete}
+                           delTodo={this.delTodo}/>
+                           <Filtr FiltrTodo = {this.FiltrTodo} cancelF = {this.cancelF}/>
+                  </React.Fragment>
+              )}/>
+              <Route path='/About'
+                     component={About}/>
+            </div>
           </div>
-        </div>
+        </Router>
     );
   }
 }
-
 export default App;
