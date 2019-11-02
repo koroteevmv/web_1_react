@@ -26,16 +26,16 @@ class TodoItem extends React.Component{
                     <button onClick={this.props.delTodo.bind(this, id)}
                             style={btnStyle}>X</button>
                 </p>
+
             </div>
         );
     }
 }
 
 const btnStyle = {
-    background: '#ff0000',
     color: '#fff',
     border: 'none',
-    padding: '5px 9px',
+    padding: '9px 12px',
     borderRadius:'50%',
     cursor: 'pointer',
     float:'right'

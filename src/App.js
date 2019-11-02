@@ -2,99 +2,128 @@ import React from 'react';
 import './App.css';
 import Todos from './components/Todos'
 import Header from "./components/layout/Header";
+import Filtr from "./components/Filtr";
 import AddTodo from "./components/AddTodo";
-import About from "./components/layout/About";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-class App extends React.Component{
-  state = {
-    todos:[
-      {
-        id: 1,
-        title: 'Вынести мусор',
-        completed: false,
-      },
-      {
-        id: 2,
-        title: 'Встреча с друзьями',
-        completed: true,
-      },
-      {
-        id: 3,
-        title: 'Совещание на работе',
-        completed: false,
-      },
-    ]
-  };
-  addTodo = (title) => {
-    const len = this.state.todos.length;
-    const newTodo = {
-      id: len + 1,
-      title: title,
-      completed: false
+import About2 from "./components/About2";
+class App extends React.Component {
+    state = {
+        todos: [
+            {
+                id: 1,
+                title: 'Вынести мусор',
+                completed: false,
+                duration: 2,
+            },
+            {
+                id: 2,
+                title: 'Встреча с друзьями',
+                completed: true,
+                duration: 3,
+            },
+            {
+                id: 3,
+                title: 'Совещание на работе',
+                completed: false,
+                duration: 4,
+            },
+        ]
     };
-    this.setState({todos: [...this.state.todos, newTodo]},
-        () => {
-          this.todosCopy = this.state.todos;
-          localStorage.setItem('td', JSON.stringify(this.state.todos));
-        })
-  };
-
-  componentWillMount() {
-    if (localStorage.getItem('td')) {
-      this.setState({
-        todos: JSON.parse(localStorage.getItem('td'))
-      })
+    addTodo = (title, duration) => {
+        if (title === '' | duration === '') {
+            alert('Вы что-то не ввели')
+        }
+        else{
+            const len = this.state.todos.length;
+            const newTodo = {
+                id: len + 1,
+                title: title,
+                duration: duration,
+                completed: false
+            };
+            this.setState({todos: [...this.state.todos, newTodo ].sort( (a,b) => a.duration > b.duration ? 1: -1 ) },
+                () => {this.todosCopy = this.state.todos; localStorage.setItem('Sh', JSON.stringify(this.state.todos));})
+        }
+    };
+    markComplete = (id) => {
+        this.setState({
+            todos: this.state.todos.map(todo => {
+                if (todo.id === id) {
+                    todo.completed = !todo.completed;
+                }
+                return todo;
+            })
+        });
+    };
+    componentWillMount() {
+        if (localStorage.getItem('Sh')) {
+            this.setState({
+                todos: JSON.parse(localStorage.getItem('Sh'))
+            })
+        }
     }
-  }
-  componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem('td', JSON.stringify(nextState.todos));
-  }
-  // Toggle complete
-  markComplete =(id) => {
-    this.setState({ todos: this.state.todos.map(todo =>{
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-      }
-      return todo;
-      }) });
-  };
+    componentWillUpdate(nextProps, nextState) {
+        localStorage.setItem('Sh', JSON.stringify(nextState.todos));
+    }
+    delTodo = (id) => {
+        this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]});
+    }
+    state = {
+        todos:[
+            {
+                id: 1,
+                title: 'Вынести мусор',
+                duration: 2,
+                completed: false,
+            },
+            {
+                id: 2,
+                duration: 3,
+                title: 'Встреча с друзьями',
+                completed: false,
+            },
+            {
+                id: 3,
+                duration: 4,
+                title: 'Совещание на работе',
+                completed: false,
+            },
+        ]
+    };
+    Fil = false;
+    FiltrTodo = (title) => {
+        if(title !== ''){
 
-  delTodo = (id) => {
-    this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]});
-  }
-  state = {
-    todos:[
-      {
-        id: 1,
-        title: 'Вынести мусор',
-        completed: false,
-      },
-      {
-        id: 2,
-        title: 'Встреча с друзьями',
-        completed: true,
-      },
-      {
-        id: 3,
-        title: 'Совещание на работе',
-        completed: false,
-      },
-    ]
-  };
-
+            this.todosCopy = this.state.todos;
+            this.Fil = true;
+            this.setState({todos: this.state.todos.filter(todo => todo.title === title)},
+                () => console.log(this.state.todos));}
+    };
+    del = () => {
+        if(this.Fil === true){
+            this.setState({todos:this.todosCopy})
+        }
+    };
   render() {
     return (
+        <Router>
         <div className="App">
           <div className="container">
             <Header/>
-            <AddTodo/>
-            <Todos todos={this.state.todos}
-                   markComplete={this.markComplete}
-                   delTodo={this.delTodo}
-            />
-            <Route path="/layout/About" component={About} />
+            <Route exact path='/' render={props => (
+                <React.Fragment>
+                  <Filtr FiltrTodo = {this.FiltrTodo} del = {this.del}/>
+                  <AddTodo addTodo={this.addTodo}/>
+                  <Todos todos={this.state.todos}
+                         markComplete={this.markComplete}
+                         delTodo={this.delTodo}/>
+                </React.Fragment>
+            )}/>
+            <Route path='/About2'
+                   component={About2}/>
           </div>
         </div>
+        </Router>
     );
   }
 }

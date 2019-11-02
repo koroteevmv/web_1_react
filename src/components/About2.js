@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-export default class About extends Component {
+import {Link} from "react-router-dom";
+export default class About2 extends Component {
     render() {
         return (
             <React.Fragment>

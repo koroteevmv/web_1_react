@@ -5,7 +5,7 @@ function Header() {
         <header style={headerStyle}>
             <h1>TodoList</h1>
             <Link to="/">На главную</Link>
-            <p> <Link to="/layout/About">О нас</Link></p>
+            <p> <Link to="/About2">About</Link></p>
         </header>
     )
 }
