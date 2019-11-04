@@ -3,6 +3,7 @@ import './App.css';
 import Todos from './components/Todos'
 import Header from "./components/layout/header";
 import AddTodo from "./components/addTodo";
+import Filter from "./components/filter";
 
 class App extends React.Component{
   state = {
@@ -24,6 +25,25 @@ class App extends React.Component{
       },
     ]
   };
+
+  placeHolder = this.state.todos
+  clear = () => {
+    this.setState({todos:this.placeHolder})
+  }
+
+  search = (title) => {
+    if (title === '') {
+      alert("VBEI CHENIT")
+      return
+    }
+    this.placeHolder = this.state.todos
+    this.setState(
+      {
+        todos: this.state.todos.filter(todo => todo.title === title)
+      }
+    )
+  }
+
   // Toggle complete
   markComplete = (id) => {
     this.setState({ todos: this.state.todos.map(todo =>{
@@ -43,15 +63,18 @@ class App extends React.Component{
 
   addTodo = (title) => {
 
-    console.log(title)
+    if (title === '') {
+      alert("VBEI CHENIT")
+      return
+    }
 
     const newOne = {
       id: this.generateUUID(),
       title: title,
       completed: false
     }
-
     this.setState({todos: [...this.state.todos, newOne]})
+    this.placeHolder = [...this.state.todos, newOne]
 
   }
 
@@ -66,6 +89,7 @@ class App extends React.Component{
           <div className="container">
             <Header/>
             <AddTodo addTodo={this.addTodo}/>
+            <Filter clear={this.clear} search={this.search}/>
             <Todos todos={this.state.todos}
                    markComplete={this.markComplete}
                    delTodo={this.delTodo}
