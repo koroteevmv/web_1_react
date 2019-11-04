@@ -15,7 +15,7 @@ class App extends React.Component{
       {
         id: 2,
         title: 'Встреча с друзьями',
-        completed: true,
+        completed: false,
       },
       {
         id: 3,
@@ -25,7 +25,7 @@ class App extends React.Component{
     ]
   };
   // Toggle complete
-  markComplete =(id) => {
+  markComplete = (id) => {
     this.setState({ todos: this.state.todos.map(todo =>{
       if (todo.id === id) {
         todo.completed = !todo.completed;
@@ -34,8 +34,30 @@ class App extends React.Component{
       }) });
   };
 
+  generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+  addTodo = (title) => {
+
+    console.log(title)
+
+    const newOne = {
+      id: this.generateUUID(),
+      title: title,
+      completed: false
+    }
+
+    this.setState({todos: [...this.state.todos, newOne]})
+
+  }
+
+
   delTodo = (id) => {
-    this.setState({todos: [...this.state.todos.filter(todo => todo.id != id)]});
+    this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]});
   }
 
   render() {
@@ -43,7 +65,7 @@ class App extends React.Component{
         <div className="App">
           <div className="container">
             <Header/>
-            <AddTodo/>
+            <AddTodo addTodo={this.addTodo}/>
             <Todos todos={this.state.todos}
                    markComplete={this.markComplete}
                    delTodo={this.delTodo}
