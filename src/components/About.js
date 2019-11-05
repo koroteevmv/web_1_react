@@ -4,7 +4,7 @@ class About extends Component {
         return (
             <React.Fragment>
                 <h1>About</h1>
-                <p>Produced by Alma</p>
+                <p>Produced by Alma PI4-2</p>
             </React.Fragment>
         );
     }
