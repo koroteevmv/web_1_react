@@ -20,7 +20,7 @@ class AddTodo extends Component {
             <form onSubmit={this.onSubmit} style={{display: 'flex'}}>
                 <input type='text'
                        name='title'
-                       placeholder='Add todo'
+                       placeholder='Add new Todo'
                        style={{flex: '10'}}
                        value={this.state.title}
                        onChange={this.onChange}
@@ -28,13 +28,13 @@ class AddTodo extends Component {
                 <input type='number'
                        name="duration"
                        min={1}
-                       style={{flex: '8'}}
+                       style={{flex: '2'}}
                        value={this.state.duration}
                        onChange={this.onChange}
                        className="btn btn-secondary"
                 />
                 <input type='submit'
-                       value='Добавить'
+                       value='Add'
                        className="btn btn-secondary"
                        style={{flex: '1'}}
                 />

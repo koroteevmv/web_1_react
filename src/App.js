@@ -103,8 +103,6 @@ else {
       },
     ]
   };
-
-
   Fil = false;
   FiltrTodo = (title) => {
     if(title !== ''){
@@ -126,14 +124,12 @@ else {
               <Header/>
               <Route exact path='/' render={props => (
                   <React.Fragment>
-
+                    <h1>Things to do</h1>
                     <AddTodo addTodo={this.addTodo}/>
-
                     <Todos todos={this.state.todos}
                            markComplete={this.markComplete}
                            delTodo={this.delTodo}/>
-
-                             <h1>Фильтр</h1>
+                             <h1 align={'left'}>Filter</h1>
                              <Filtr FiltrTodo = {this.FiltrTodo} delFiltr = {this.delFiltr}/>
                   </React.Fragment>
               )}/>

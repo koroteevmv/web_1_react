@@ -24,7 +24,7 @@ class TodoItem extends React.Component{
                     { title }
                     {' '}
                     { duration }
-                    <button onClick={this.props.delTodo.bind(this, id)}
+                    <button onClick={this.props.delTodo.bind(this, id) }
                             style={btnStyle}>X</button>
                 </p>
             </div>
@@ -43,7 +43,9 @@ const btnStyle = {
 };
 
 TodoItem.propTypes = {
-    todo: PropTypes.object.isRequired
+    todos: PropTypes.object.isRequired,
+    markComplete: PropTypes.func.isRequired,
+    delTodo: PropTypes.func.isRequired
 };
 
 

@@ -38,11 +38,11 @@ class Filtr extends React.Component{
                         className="btn btn-secondary"
                         style={{flex: '2'}}
 
-                        onClick={this.onClick}>Фильтр</button>
+                        onClick={this.onClick}>Search</button>
                 <button type="submit"
                         className="btn btn-secondary"
                         style={{flex: '2'}}
-                        onClick={this.onClick2}>Очистить</button></div>
+                        onClick={this.onClick2}>Show all</button></div>
             </form>
         )
     }
