@@ -18,7 +18,7 @@ class TodoItem extends React.Component {
   };
 
   render() {
-    const { id, title } = this.props.todo;
+    const { id, title, completed } = this.props.todo;
 
     return (
       <div style={this.getStyle()}>
@@ -27,6 +27,7 @@ class TodoItem extends React.Component {
             <input
               type="checkbox"
               onChange={this.props.markComplete.bind(this, id)}
+              checked={completed ? "checked" : ""}
             />{" "}
             {title}
             <button
