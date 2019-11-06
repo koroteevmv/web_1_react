@@ -5,6 +5,7 @@ import './App.css';
 import Todos from './components/Todos'
 import Header from "./components/layout/header";
 import AddTodo from "./components/addTodo";
+import Filter from "./components/Filter";
 
 class App extends React.Component{
   state = {
@@ -56,26 +57,55 @@ class App extends React.Component{
     this.setState({todos: [...this.state.todos.filter(todo => todo.id != id)]});
   }
 
+
   addTodo = (title, do_until) => {
-    const len = this.state.todos.length;
-    const newTodo = {
-      id:len+1,
-      title: title,
-      completed: false,
-      do_until: do_until,
-    };
-    this.setState({todos: [...this.state.todos, newTodo]});
+
+    if (localStorage.getItem('Filtered_todos') !== null) {
+      alert ("Сначала отмените фильтр!");
+    }
+
+    else {
+      const len = this.state.todos.length;
+      const newTodo = {
+        id:len+1,
+        title: title,
+        completed: false,
+        do_until: do_until,
+      };
+      this.setState({todos: [...this.state.todos, newTodo]});
+    }
   };
 
     componentWillMount() {
-        localStorage.getItem('TodosList') && this.setState({
-            todos: JSON.parse(localStorage.getItem('TodosList'))
+        localStorage.getItem('Todo_list') && this.setState({
+            todos: JSON.parse(localStorage.getItem('Todo_list'))
         })
     }
 
     componentWillUpdate(nextProps, nextState) {
-        localStorage.setItem('TodosList', JSON.stringify(nextState.todos));
+        localStorage.setItem('Todo_list', JSON.stringify(nextState.todos));
     }
+
+    filter = (titletext) => {
+
+      if (localStorage.getItem('Filtered_todos') !== null) {
+        alert ("Сначала отмените фильтр!");
+      }
+
+      else {
+        alert(titletext);
+        localStorage.setItem('Filtered_todos', JSON.stringify(this.state.todos));
+        this.setState({todos: [...this.state.todos.filter(todo => todo.title.toLowerCase().indexOf(titletext.toLowerCase()) != -1 )]});
+      }
+    };
+
+    clear_filter = () => {
+      if (localStorage.getItem('Filtered_todos') !== null) {
+        this.setState({ todos: JSON.parse(localStorage.getItem('Filtered_todos')) });
+        localStorage.removeItem("Filtered_todos");
+      }
+
+    };
 
   render() {
     return (
@@ -86,6 +116,7 @@ class App extends React.Component{
               <Route exact path='/' render={props => (
                  <React.Fragment>
                    <AddTodo addTodo={this.addTodo}/>
+                   <Filter filter={this.filter} clear_filter={this.clear_filter}/>
                    <Todos todos={this.state.todos}
                           markComplete={this.markComplete}
                           delTodo={this.delTodo}/>

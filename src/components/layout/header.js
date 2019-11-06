@@ -21,6 +21,7 @@ const headerStyle = {
     color: '#fff',
     textAlign: 'center',
     padding: '10px',
+    marginBottom: '8px',
 }
 
 export default Header;
