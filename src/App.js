@@ -1,55 +1,32 @@
 import React from 'react';
 import './App.css';
-import Todos from './components/Todos'
-import Header from "./components/layout/header";
-import AddTodo from "./components/addTodo";
+import Header from "./components/layout/Header";
+import Footer from "./components/Footer";
+import HomePage from "./components/HomePage";
+import Navigation from "./components/Navigation";
+import { Switch, Route } from 'react-router-dom';
+import kotyata from "./components/kotyata";
 
-class App extends React.Component{
-  state = {
-    todos:[
-      {
-        id: 1,
-        title: 'Вынести мусор',
-        completed: false,
-      },
-      {
-        id: 2,
-        title: 'Встреча с друзьями',
-        completed: true,
-      },
-      {
-        id: 3,
-        title: 'Совещание на работе',
-        completed: false,
-      },
-    ]
-  };
-  // Toggle complete
-  markComplete =(id) => {
-    this.setState({ todos: this.state.todos.map(todo =>{
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-      }
-      return todo;
-      }) });
-  };
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-  delTodo = (id) => {
-    this.setState({todos: [...this.state.todos.filter(todo => todo.id != id)]});
-  }
+    };
 
   render() {
     return (
-        <div className="App">
-          <div className="container">
-            <Header/>
-            <AddTodo/>
-            <Todos todos={this.state.todos}
-                   markComplete={this.markComplete}
-                   delTodo={this.delTodo}
-            />
-          </div>
-        </div>
+      <div className="App">
+        <Header/>
+        <h3 className="form__label">МЕНЮ</h3>
+        <Navigation />
+          <Switch>
+              <Route exact path='/' component={HomePage}/>
+              <Route exact path='/kotyata' component={kotyata}/>
+          </Switch>
+        <Footer />
+
+            
+      </div>
     );
   }
 }

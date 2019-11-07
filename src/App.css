@@ -20,24 +20,3 @@
 .App-link {
   color: #09d3ac;
 }
-
-* {
-  margin: 0;
-}
-
-.container {
-  padding: 0 1rem;
-}
-
-.btn {
-  display: block;
-  border: none;
-  background: #555555;
-  color: #ffffff;
-  padding: 7px 20px;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background: #666666;
-}
