@@ -42,6 +42,31 @@ class App extends React.Component {
     });
   };
 
+  addTodo = (title, duration) => {
+    if ((title === "") | (duration === "")) {
+      alert("Enter todo");
+    } else {
+      const len = this.state.todos.length;
+      const newTodo = {
+        id: len + 1,
+        title: title,
+        duration: duration,
+        completed: false
+      };
+      this.setState(
+        {
+          todos: [...this.state.todos, newTodo].sort((a, b) =>
+            a.duration > b.duration ? 1 : -1
+          )
+        },
+        () => {
+          this.todosCopy = this.state.todos;
+          localStorage.setItem("List", JSON.stringify(this.state.todos));
+        }
+      );
+    }
+  };
+
   render() {
     return (
       <div className="App">
