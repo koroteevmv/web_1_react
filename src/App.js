@@ -1,55 +1,36 @@
-import React from 'react';
-import './App.css';
-import Todos from './components/Todos'
+import React from "react";
 import Header from "./components/layout/header";
-import AddTodo from "./components/addTodo";
+import Contacts from "./components/Contacts";
+import About from "./components/About";
 
-class App extends React.Component{
-  state = {
-    todos:[
-      {
-        id: 1,
-        title: 'Вынести мусор',
-        completed: false,
-      },
-      {
-        id: 2,
-        title: 'Встреча с друзьями',
-        completed: true,
-      },
-      {
-        id: 3,
-        title: 'Совещание на работе',
-        completed: false,
-      },
-    ]
-  };
-  // Toggle complete
-  markComplete =(id) => {
-    this.setState({ todos: this.state.todos.map(todo =>{
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-      }
-      return todo;
-      }) });
-  };
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import TodoApp from "./TodoApp";
 
-  delTodo = (id) => {
-    this.setState({todos: [...this.state.todos.filter(todo => todo.id != id)]});
-  }
-
+class App extends React.Component {
   render() {
     return (
-        <div className="App">
-          <div className="container">
-            <Header/>
-            <AddTodo/>
-            <Todos todos={this.state.todos}
-                   markComplete={this.markComplete}
-                   delTodo={this.delTodo}
-            />
+      <div className="App">
+        <div className="container">
+          <div className="row mb-3">
+            <div className="col">
+              <Header />
+            </div>
           </div>
+          <Router>
+            <Switch>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/contacts">
+                <Contacts />
+              </Route>
+              <Route path="/">
+                <TodoApp />
+              </Route>
+            </Switch>
+          </Router>
         </div>
+      </div>
     );
   }
 }
