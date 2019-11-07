@@ -195,7 +195,7 @@ class App extends React.Component {
         id: 3,
 
         duration: 3,
-
+ 
         title: 'Совещание на работе',
 
         completed: false,
