@@ -57,8 +57,18 @@ class App extends React.Component{
     this.setState({todos: [...this.state.todos.filter(todo => todo.id != id)]});
   }
 
-
   addTodo = (title, do_until) => {
+
+    let Data = new Date();
+    let Year = Data.getFullYear();
+    let Month = Data.getMonth() +1;
+    let Day = Data.getDate();
+    if((Day+' ').length <= 2){
+      Day = '0'+Day;
+      //alert(Day);
+    };
+
+    const cur_date = Year+'-'+Month+'-'+Day;
 
     if (localStorage.getItem('Filtered_todos') !== null) {
       alert ("Сначала отмените фильтр!");
@@ -66,13 +76,42 @@ class App extends React.Component{
 
     else {
       const len = this.state.todos.length;
+      let max_id = 0;
+      for (var i = 0; i < len; i++) {
+        if (this.state.todos[i].id > max_id) {
+          max_id = this.state.todos[i].id;
+        }
+      }
+
       const newTodo = {
-        id:len+1,
+        id: max_id + 1,
         title: title,
         completed: false,
         do_until: do_until,
       };
-      this.setState({todos: [...this.state.todos, newTodo]});
+
+      function compare(a, b) {
+        let today = new Date(cur_date);
+
+        let len_a = a.do_until;
+        let len_b = b.do_until;
+
+        let date1 = new Date(len_a);
+        let date2 = new Date(len_b);
+
+        let daysLag1 = Math.ceil(Math.abs(today.getTime() - date1.getTime()) / (1000 * 3600 * 24));
+        let daysLag2 = Math.ceil(Math.abs(today.getTime() - date2.getTime()) / (1000 * 3600 * 24));
+
+        let comparison = 0;
+        if (daysLag1 > daysLag2) {
+          comparison = 1;
+        } else if (daysLag1 < daysLag2) {
+          comparison = -1;
+        }
+        return comparison;
+      }
+
+      this.setState({todos: [...this.state.todos, newTodo].sort(compare)}, () => localStorage.setItem('Todo_list', JSON.stringify(this.state.todos)));
     }
   };
 
@@ -87,13 +126,11 @@ class App extends React.Component{
     }
 
     filter = (titletext) => {
-
       if (localStorage.getItem('Filtered_todos') !== null) {
         alert ("Сначала отмените фильтр!");
       }
 
       else {
-        alert(titletext);
         localStorage.setItem('Filtered_todos', JSON.stringify(this.state.todos));
         this.setState({todos: [...this.state.todos.filter(todo => todo.title.toLowerCase().indexOf(titletext.toLowerCase()) != -1 )]});
       }
@@ -104,7 +141,6 @@ class App extends React.Component{
         this.setState({ todos: JSON.parse(localStorage.getItem('Filtered_todos')) });
         localStorage.removeItem("Filtered_todos");
       }
-
     };
 
   render() {
