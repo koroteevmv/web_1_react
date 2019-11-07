@@ -5,6 +5,17 @@ function Header() {
         <header style={headerStyle}>
             <h1>TodoList</h1>
         </header>
+
+        <header style={headerStyle1}>
+        <Link style={LinkStyle} to="/">
+          [Главная]
+        </Link>
+        <Link style={LinkStyle} to="/About">
+          {" "}
+          [О приложении]
+        </Link>
+      </header>
+      <br />
     )
 }
 

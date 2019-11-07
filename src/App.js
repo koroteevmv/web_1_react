@@ -69,17 +69,28 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="container">
-          <Header />
-          <AddTodo />
-          <Todos
-            todos={this.state.todos}
-            markComplete={this.markComplete}
-            delTodo={this.delTodo}
-          />
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <React.Fragment>
+                  <AddTodo addTodo={this.addTodo} />
+                  <Todos
+                    todos={this.state.todos}
+                    markComplete={this.markComplete}
+                    delTodo={this.delTodo}
+                  />
+                </React.Fragment>
+              )}
+            />
+            <Route path="/about" component={About} />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
