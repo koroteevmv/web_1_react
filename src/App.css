@@ -1,3 +1,24 @@
+body {
+  background: #00505c;
+}
+
+::placeholder {
+  color: white;
+}
+
+.pop {
+  display: none;
+}
+
+.hoverPop:hover {
+  background: red;
+}
+
+.hoverPop:hover .pop {
+  display: block;
+  position: relative;
+}
+
 .App {
   text-align: center;
 }
