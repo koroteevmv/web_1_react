@@ -15,16 +15,20 @@ class AddTodo extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit} style={{display: 'flex'}}>
+            <form className="d-flex flex-column" onSubmit={this.onSubmit}>
                 <input type='text'
                        name='title'
-                       placeholder='Новое дело'
+                       placeholder='Add Todo'
                        style={{flex: '10'}}
                        value={this.state.title}
                        onChange={this.onChange}
                 />
+                <input type="date"
+                name="date"
+                
+                />
                 <input type='submit'
-                       value='Добавить'
+                       value='Add'
                        className='btm'
                        style={{flex: '1'}}
                 />
