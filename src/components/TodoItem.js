@@ -21,8 +21,7 @@ class TodoItem extends React.Component{
             <div style={this.getStyle()}>
                 <p align='left'>
                     <input type="checkbox"
-                           onChange={this.props.markComplete.bind(this, id)}/> {' '}
-                    { title }
+                           onChange={this.props.markComplete.bind(this, id)}/>{' '}{title}
                     <button onClick={this.props.delTodo.bind(this, id)}
                             style={btnStyle}>X</button>
                 </p>
@@ -36,14 +35,13 @@ const btnStyle = {
     color: '#fff',
     border: 'none',
     padding: '5px 9px',
-    borderRadius:'50%',
+    borderRadius:'100%',
     cursor: 'pointer',
-    float:'right'
+    float:'right',
 };
 
 TodoItem.propTypes = {
     todo: PropTypes.object.isRequired
 };
-
 
 export default TodoItem;
