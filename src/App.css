@@ -26,6 +26,8 @@
 }
 
 .container {
+  width: 1200px;
+  margin: 0 auto;
   padding: 0 1rem;
 }
 
@@ -40,4 +42,58 @@
 
 .btn:hover {
   background: #666666;
+}
+
+body {
+  background: #f9ebfa;
+}
+
+.h1 {
+  font-size: 80px;
+}
+
+.linearFon {
+  font-size: 40px;
+  font-weight: bold;
+  background: linear-gradient(45deg, deeppink, dodgerblue 50%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.linearAntiFon {
+  -webkit-text-fill-color: black;
+}
+
+.addForm input {
+  font-size: 40px;
+  height: 70px;
+}
+
+.menu {
+  display: flex;
+  width: 999px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.menu a {
+  padding: 30px;
+  display: block;
+  font-size: 50px;
+  font-weight: bold;
+  background: linear-gradient(45deg, deeppink, dodgerblue 50%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.menu a:hover {
+  background: black;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.pozdno {
+  background: red;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
