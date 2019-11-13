@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import App from '../App';
 
 class TodoItem extends React.Component {
     getStyle = () => {
@@ -16,17 +17,21 @@ class TodoItem extends React.Component {
     }
 
     render() {
-        const { id, title } = this.props.todo;
+        const { id, title, date } = this.props.todo;
+        this.date = new Date(date);
         return (
             <div style={this.getStyle()}>
-                <p align='left' className="d-flex justify-content-between">
-                    <div>
+                <div align='left' className="d-flex justify-content-between">
+                    <span className="d-flex jusify-content-between">
                         <input type="checkbox" onChange={this.props.markComplete.bind(this, id)} />{' '}{title}
-                    </div>
+                    </span>
+                    <div>
+                    {'Выполнить к '}{date}{' '}
                     <button onClick={this.props.delTodo.bind(this, id)}>
-                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
-                </p>
+                    </div>
+                </div>
             </div>
         );
     }
