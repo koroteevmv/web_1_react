@@ -51,6 +51,26 @@ class App extends React.Component{
       this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]})
     }
   };
+  addTodoView = (title,date)=>{
+    const len = this.state.todos.length;
+    const newTodo = {
+      id:len+1,
+      title: title,
+      completed: false,
+      date: date,
+    };
+    if(this.isFiltered === true){
+      localStorage.setItem('Todos', JSON.stringify(JSON.parse(localStorage.getItem('Todos')).concat([newTodo])))
+    }
+    else{
+      this.setState({todos: [...this.state.todos,newTodo].sort(
+          function (a,b) {
+            return new Date(a.date) - new Date(b.date);
+          })
+          },
+            ()=>localStorage.setItem('Todos', JSON.stringify(this.state.todos)))
+    }
+  };
   addTodo = (title, date) => {
     if(title === ''){
       alert('Вы не ввели название дела, которое необходимо добавить')
@@ -60,25 +80,18 @@ class App extends React.Component{
         alert("Вы не указали дату выполнения дела")
       }
       else{
-        if ( new Date() - new Date(date) > 0){
+        if( new Date().getDay() === new Date(date).getDay()
+            && new Date().getMonth() === new Date(date).getMonth()
+            && new Date().getFullYear() === new Date(date).getFullYear() ){
+          this.addTodoView(title,date);
+          alert('Обратите внимание, что вы добавили дело, которое надо выполнить сегодня!')
+        }
+        else if ( new Date() - new Date(date) > 0) {
           alert('Извините, данное дело нельзя добавить в список дел, ' +
               'так как срок его выполнения прошел!')
         }
-        else{
-          const len = this.state.todos.length;
-          const newTodo = {
-            id:len+1,
-            title: title,
-            completed: false,
-            date: date,
-          };
-          if(this.isFiltered === true){
-            localStorage.setItem('Todos', JSON.stringify(JSON.parse(localStorage.getItem('Todos')).concat([newTodo])))
-          }
-          else{
-            this.setState({todos: [...this.state.todos, newTodo].sort((a,b)=>a.date > b.date ? 1: -1)},
-                () => localStorage.setItem('Todos', JSON.stringify(this.state.todos)));
-          }
+        else if (new Date() - new Date(date)< 0){
+          this.addTodoView(title,date);
         }
       }
     }
