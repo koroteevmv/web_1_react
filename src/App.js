@@ -43,12 +43,15 @@ class App extends React.Component{
     };
     todosCopy;
     delTodo = (id) => {
-
-        this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]},
-            ()=> { console.log(this.state.todos);
-                this.todosCopy = this.todosCopy.filter(todo=>todo.id!==id);
+        if(this.flagFiltra === false){
+            this.setState({todos:[...this.state.todos.filter(todo=>todo.id !== id)]},
+                ()=> {localStorage.setItem('List', JSON.stringify(this.state.todos))})
+        }
+        else{
+            this.todosCopy = this.todosCopy.filter(todo=>todo.id !== id);
             localStorage.setItem('List', JSON.stringify(this.todosCopy));
-            console.log(this.todosCopy) })
+            this.setState({todos:[...this.state.todos.filter(todo=>todo.id !== id)]})
+        }
     };
     addTodo = (title, duration) => {
         if (title === '' | duration === ''){
@@ -59,7 +62,7 @@ class App extends React.Component{
                 alert('Продолжительности не может быть отрицательной или равной нулю')
             }
             else{
-                if(this.flag === true){
+                if(this.flagFiltra === true){
                     alert('Вам нужно сначала отменить фильрацию, а потом добавить новое дело')
                 }
                 else{
@@ -90,6 +93,7 @@ class App extends React.Component{
     };
     cancelFiltr = () => {
         if(this.flagFiltra === true){
+            this.flagFiltra = false;
             this.setState({todos:this.todosCopy})
         }
     };
