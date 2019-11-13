@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 class TodoItem extends React.Component{
     getStyle = () => {
         return{
-            background: '#f4f4f4',
             padding: '5px',
             borderBottom: '1px #ccc dotted',
             textDecoration: this.props.todo.completed ? 'line-through' : 'none'
@@ -31,11 +30,12 @@ class TodoItem extends React.Component{
     }
 }
 
+
 const btnStyle = {
-    background: '#ff0000',
+    background: '#000000',
     color: '#fff',
     border: 'none',
-    padding: '5px 9px',
+    padding: '1px 9px',
     borderRadius:'50%',
     cursor: 'pointer',
     float:'right'

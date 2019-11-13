@@ -7,18 +7,18 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: blue;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: yellow;
 }
 
 .App-link {
-  color: #09d3ac;
+  color: blue;
 }
 
 * {
@@ -32,12 +32,12 @@
 .btn {
   display: block;
   border: none;
-  background: #555555;
+  background: yellow;
   color: #ffffff;
   padding: 7px 20px;
   cursor: pointer;
 }
 
 .btn:hover {
-  background: #666666;
+  background: yellow;
 }
