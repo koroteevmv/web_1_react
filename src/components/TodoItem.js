@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-
 class TodoItem extends React.Component{
     getStyle = () => {
         return{
@@ -10,19 +9,21 @@ class TodoItem extends React.Component{
             textDecoration: this.props.todo.completed ? 'line-through' : 'none'
         }
     };
-
     markComplete = (e) => {
         console.log(this.props)
     }
 
     render() {
         const {id, title} = this.props.todo;
+        const {duration} = this.props.todo;
         return (
             <div style={this.getStyle()}>
                 <p align='left'>
                     <input type="checkbox"
                            onChange={this.props.markComplete.bind(this, id)}/> {' '}
                     { title }
+                    {' '}
+                    { duration }
                     <button onClick={this.props.delTodo.bind(this, id)}
                             style={btnStyle}>X</button>
                 </p>
@@ -30,9 +31,8 @@ class TodoItem extends React.Component{
         );
     }
 }
-
 const btnStyle = {
-    background: '#ff0000',
+    background: '#ff0062',
     color: '#fff',
     border: 'none',
     padding: '5px 9px',
@@ -40,10 +40,7 @@ const btnStyle = {
     cursor: 'pointer',
     float:'right'
 };
-
 TodoItem.propTypes = {
     todo: PropTypes.object.isRequired
 };
-
-
 export default TodoItem;
